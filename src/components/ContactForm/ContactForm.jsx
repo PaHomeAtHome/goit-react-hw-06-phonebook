@@ -27,14 +27,12 @@ const validationSchema = Yup.object({
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={validationSchema}
-      onSubmit={(value, { resetForm }) => {
-        dispatch(addContact(value));
-        resetForm();
-      }}
+      onSubmit={value => dispatch(addContact(value))}
       enableReinitialize
     >
       <Form autoComplete="off">

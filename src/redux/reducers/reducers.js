@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { addContact, changeFilter, removeContact } from 'redux/actions/actions';
+import { ContactForm } from 'components/ContactForm/ContactForm';
 
 function getContacts() {
   const storageContacts = localStorage.getItem('contacts');
@@ -25,9 +26,12 @@ export const contactsReducer = createReducer(
         if (items) {
           if (
             items.length > 0 &&
-            items.find(contact => contact.name === name)
+            items.find(
+              contact => contact.name.toLowerCase() === name.toLowerCase()
+            )
           ) {
             alert(name + ' is already in contacts');
+
             return;
           }
           if (items.length > 0) {
@@ -37,6 +41,7 @@ export const contactsReducer = createReducer(
             );
 
             state.items = [...items, action.payload];
+            console.log(ContactForm);
             return;
           }
         }
@@ -45,6 +50,7 @@ export const contactsReducer = createReducer(
           localStorage.setItem('contacts', JSON.stringify([action.payload]));
 
           state.items = [action.payload];
+
           return;
         }
 
@@ -52,6 +58,7 @@ export const contactsReducer = createReducer(
           localStorage.setItem('contacts', JSON.stringify([action.payload]));
 
           state.items = [action.payload];
+
           return;
         }
         return;

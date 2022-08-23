@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useDispatch } from 'react-redux';
 import { removeContact } from 'redux/actions/actions';
 import { Element, Button } from './ContactListComponentStyled';
@@ -14,4 +16,12 @@ export const ContactListComponent = ({ contact }) => {
       </Button>
     </Element>
   );
+};
+
+ContactListComponent.propTypes = {
+  contact: PropTypes.shape({
+    name: PropTypes.string,
+    number: PropTypes.string,
+    id: PropTypes.string,
+  }),
 };

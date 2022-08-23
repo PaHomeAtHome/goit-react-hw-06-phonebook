@@ -11,7 +11,7 @@ export const Filter = () => {
         name="filter"
         type="text"
         placeholder="Name"
-        onChange={e => dispatch(changeFilter(e.currentTarget.value))}
+        onChange={e => dispatch(changeFilter(e.target.value))}
       />
     </div>
   );
